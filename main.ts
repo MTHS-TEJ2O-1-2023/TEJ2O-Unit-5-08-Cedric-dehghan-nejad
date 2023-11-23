@@ -1,29 +1,34 @@
 /* Copyright (c) 2020 MTHS All rights reserved
  *
- * Created by: Mr. Coxall
- * Created on: Sep 2020
- * This program make a 28BYJ-48 DC 5V stepper motor move
- * Also, using the new standard of using a while (true) statement
+ * Created by: Cedric
+ * Created on: Nov 2023
+ * This program measures the distance between objects
 */
+
+let distanceToObject: number = 0
 
 // setup
 basic.showIcon(IconNames.Happy)
-let distanceToObject: number = 0
 
-// loop forever
 while (true) {
-  if (input.buttonIsPressed(Button.A) == true) {
-  // find distance from sonar
-      input.onButtonPressed(Button.A, function () {
-          basic.clearScreen()
-          distanceToObject = sonar.ping(
-              DigitalPin.P1,
-              DigitalPin.P2,
-              PingUnit.Centimeters
-          )
-          basic.showNumber(distanceToObject)
-          basic.showIcon(IconNames.Happy)
-      })
+    if (input.buttonIsPressed(Button.A) == true) {
+        // find distance from sonar
+            basic.clearScreen()
+            distanceToObject = sonar.ping(
+                DigitalPin.P1,
+                DigitalPin.P2,
+                PingUnit.Centimeters
+            )
+            basic.showNumber(distanceToObject)
+            basic.showIcon(IconNames.Happy)
 
-  }
+    if (distanceToObject < 10) {
+    robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
+    basic.pause(1000)
+    robotbit.StpCarMove(-10, 48)
+    basic.pause(1000)
+    robotbit.StpCarMove(10,48)
+
+        }
+}
 }
