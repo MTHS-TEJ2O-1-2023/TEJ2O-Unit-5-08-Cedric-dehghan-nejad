@@ -23,12 +23,13 @@ while (true) {
             basic.showIcon(IconNames.Happy)
 
     if (distanceToObject < 10) {
-    robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
-    basic.pause(1000)
-    robotbit.StpCarMove(-10, 48)
-    basic.pause(1000)
-    robotbit.StpCarMove(10,48)
-
-        }
-}
-}
+robotbit.StpCarMove(-10,48)
+basic.pause(500)
+robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
+basic.pause(500)
+robotbit.StepperTurn(robotbit.Steppers.M2, robotbit.Turns.T1B4)
+basic.pause(500)
+robotbit.StpCarMove(10, 48)
+ }
+  }
+   }
