@@ -20,21 +20,24 @@ while (true) {
       DigitalPin.P2,
       PingUnit.Centimeters
     )
-    basic.showNumber(distanceToObject)
-    basic.showIcon(IconNames.Happy)
+
+      basic.showNumber(distanceToObject)
+      basic.showIcon(IconNames.Happy)
+    
+    robotbit.StpCarMove(10, 48)
 
     if (distanceToObject < 10) {
       robotbit.StpCarMove(-10, 48)
       robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
       robotbit.StepperTurn(robotbit.Steppers.M2, robotbit.Turns.T1B4)
       robotbit.StpCarMove(10, 48)
+      basic.pause(500)
+
+      }else{
+      robotbit.StpCarMove(10, 48)
+
+    }
       basic.pause(1000)
-    
-
-    }else{
-    robotbit.StpCarMove(10, 48)
-
  }
   }
-   }
 }
