@@ -2,7 +2,7 @@
  *
  * Created by: Cedric
  * Created on: Nov 2023
- * This program measures the distance between objects
+ * This program measures the distance between objectss
 */
 
 let distanceToObject: number = 0
