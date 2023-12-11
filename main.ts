@@ -38,12 +38,6 @@ while (true) {
       }
       basic.pause(1000)
 
-        // waiting for string from other microbit
-        radio.onReceivedNumber(function (receivedNumber) {
-            basic.clearScreen()
-            basic.showString(receivedNumber.toString() + ('cm'))
-            distanceFromObject = receivedNumber
-
             // if distanceFromObject is less then or equal to 10 display to close if not dislay ok
             if (distanceFromObject <= 10) {
                 basic.showString('To close.')
@@ -52,6 +46,12 @@ while (true) {
             }
             basic.pause(500)
             basic.showIcon(IconNames.Happy)
+
+            // waiting for string from other microbit
+            radio.onReceivedNumber(function (receivedNumber) {
+                basic.clearScreen()
+                basic.showString(receivedNumber.toString() + ('cm'))
+                distanceFromObject = receivedNumber
         })
     }
   }
