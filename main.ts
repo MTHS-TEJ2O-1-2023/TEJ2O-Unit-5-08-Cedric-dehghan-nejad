@@ -6,6 +6,7 @@
 */
 
 let distanceToObject: number = 0
+let distanceFromObject: number = 0
 
 // setup
 basic.showIcon(IconNames.Happy)
@@ -25,7 +26,7 @@ while (true) {
       basic.showIcon(IconNames.Happy)
 
       robotbit.StpCarMove(10, 48)
-
+      
       if (distanceToObject < 10) {
         robotbit.StpCarMove(-10, 48)
         robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
@@ -36,6 +37,22 @@ while (true) {
         robotbit.StpCarMove(10, 48)
       }
       basic.pause(1000)
+
+        // waiting for string from other microbit
+        radio.onReceivedNumber(function (receivedNumber) {
+            basic.clearScreen()
+            basic.showString(receivedNumber.toString() + ('cm'))
+            distanceFromObject = receivedNumber
+
+            // if distanceFromObject is less then or equal to 10 display to close if not dislay ok
+            if (distanceFromObject <= 10) {
+                basic.showString('To close.')
+            } else {
+                basic.showString('Good.')
+            }
+            basic.pause(500)
+            basic.showIcon(IconNames.Happy)
+        })
     }
   }
 }
